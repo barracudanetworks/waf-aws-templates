@@ -1,5 +1,7 @@
 # Introduction
 
+Quick Update: 3/30/2020: This code is currently being updated and tested for version 10.1 and any new requirements in AWS
+
 Take advantage of auto-scaling by deploying the Barracuda Web Application Firewall clusters in an auto-scaling group on AWS.
 
 Build a multi-tier redundant architecture that allows you to independently scale each tier based on your requirements.
