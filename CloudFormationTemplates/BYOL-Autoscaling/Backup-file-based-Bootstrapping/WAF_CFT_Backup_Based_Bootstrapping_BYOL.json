@@ -787,43 +787,46 @@
   "Mappings": {
     "RegionMap": {
       "us-east-1": {
-        "ImageID": "ami-d1c4e2aa"
+        "ImageID": "ami-0aebcd34f6295e8ae"
       },
       "us-east-2": {
-        "ImageID": "ami-1d1f3f78"
+        "ImageID": "ami-09518256f9e5b428e"
       },
       "us-west-1": {
-        "ImageID": "ami-34a78f54"
+        "ImageID": "ami-0956095ed3768cc50"
       },
       "us-west-2": {
-        "ImageID": "ami-58d03720"
+        "ImageID": "ami-0e8b1bc95320692d6"
       },
       "sa-east-1": {
-        "ImageID": "ami-831167ef"
+        "ImageID": "ami-0e178464bbb7a530d"
       },
       "eu-central-1": {
-        "ImageID": "ami-e277d88d"
+        "ImageID": "ami-0ade308f991ae12c5"
       },
+      "eu-north-1": {
+	      "ImageID": "ami-0ad707859b70bf935"
+      }
       "eu-west-1": {
-        "ImageID": "ami-aee91dd7"
+        "ImageID": "ami-022697067ec037c34"
       },
       "eu-west-2": {
-        "ImageID": "ami-fa27369e"
+        "ImageID": "ami-070e4e1605b15ba79"
       },
       "ap-southeast-1": {
-        "ImageID": "ami-c662fda5"
+        "ImageID": "ami-074e2025720bda866"
       },
       "ap-southeast-2": {
-        "ImageID": "ami-ed928c8e"
+        "ImageID": "ami-09bd5532ecea3fe7c"
       },
       "ap-northeast-1": {
-        "ImageID": "ami-2221cf44"
+        "ImageID": "ami-0c440bb70463c761c"
       },
       "ap-northeast-2": {
-        "ImageID": "ami-a5e33acb"
+        "ImageID": "ami-0fc188bfd3429df25"
       },
       "ap-south-1": {
-        "ImageID": "ami-29bec546"
+        "ImageID": "ami-08d58b5894bd05173"
       }
     },
     "BandwidthScaleUp": {
@@ -1300,6 +1303,3 @@
     }
   }
 }
-
-
-
