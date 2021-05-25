@@ -1,0 +1,185 @@
+{
+  "AWSTemplateFormatVersion" : "2010-09-09",
+
+  "Description" : "Barracuda WAF PAYG 1 instance, 1 interface ( aka WAF on a stick ), existing VPC. **WARNING** This template creates an Amazon EC2 instance. You will be billed for the resources used if you create a stack from this template! The initial password is admin/instanceid.  The WAF will have 1 interface with a public ip which is used for both management and ingress/egress traffic.  Check the outputs at the end of stack creation for the public IP and DNS name.  A security group will be created allowing inbound for 8000, 8443, 80, and 443, and 8080.",
+
+
+
+
+  "Parameters" : {
+    "VPCId": {
+      "Description": "Select the VPC for this deployment",
+      "Type": "AWS::EC2::VPC::Id"
+    },
+    "SubnetId": {
+      "Description": "The Id of the subnet in which the WAF is deployed",
+      "Type": "AWS::EC2::Subnet::Id"
+    },	
+    "InstanceType" : {
+      "Description" : "EC2 instance type",
+      "Type" : "String",
+      "Default" : "t2.medium",
+      "AllowedValues" : [ "t2.medium", "m4.large" ]
+    },
+    "AllowedSourceIP" : {
+      "Description" : "The src IP address range for the inbound Security rules.",
+      "Type": "String",
+      "MinLength": "9",
+      "MaxLength": "18",
+      "Default": "0.0.0.0/0",
+      "AllowedPattern": "(\\d{1,3})\\.(\\d{1,3})\\.(\\d{1,3})\\.(\\d{1,3})/(\\d{1,2})",
+      "ConstraintDescription": "Must be a valid IP CIDR range of the form x.x.x.x/x."
+   }
+  },
+
+
+
+  "Metadata" : {
+    "AWS::CloudFormation::Interface" : {
+      "ParameterGroups" : [
+	  {"Label" : {"default": "VPC Id"}, "Parameters" : ["VPCId"]  },
+	  {"Label" : {"default": "Subnet ID"}, "Parameters" : ["SubnetID"]},
+	  {"Label" : {"default": "Instance configuration"}, "Parameters" : ["InstanceType"]  },
+	  {"Label" : {"default": "Security configuration"}, "Parameters" : ["AllowedSourceIP"] } 
+	  ],
+      "ParameterLabels" : {
+		"VPCId": {"default": "VPC Id:"},
+		"SubnetId": {"default": "Subnet Id:"},
+        "InstanceType": {"default": "Server size:"},
+        "AllowedSourceIP": {"default": "CIDR range:"}
+      }
+    }
+  },
+
+
+
+
+  "Mappings" : {
+    "RegionMap" : {
+      "us-east-1"  : { "ImageID": "ami-02ba799fdb5fda694"     },
+      "eu-north-1": { "ImageID": "ami-0d743518c57557a7f"      },
+      "ap-south-1": { "ImageID": "ami-049ddfff171e18266"      },
+	  "eu-west-3": {  "ImageID": "ami-0596e2065cd63c027"      },
+	  "eu-west-2": {  "ImageID": "ami-024254e7df69f666c"      },
+	  "eu-west-1": { "ImageID": "ami-0c2ee20b4d2005675"       },
+	  "ap-northeast-2": { "ImageID": "ami-0afbe401dbdb9a282"  },
+	  "ap-northeast-1": { "ImageID": "ami-0843e2a08adf5a2bb"  },
+	  "sa-east-1": {  "ImageID": "ami-05b3d0dfa89c7dec6"      },
+	  "ca-central-1": {"ImageID": "ami-01cba513c0e5efe2b"     },
+	  "ap-southeast-1": {"ImageID": "ami-0e746d3a5b665a6fb"   },
+	  "ap-southeast-2": {"ImageID": "ami-00ae25082320f2b00"   },
+	  "eu-central-1": { "ImageID": "ami-0dcdd8046df8e35bf"    },
+	  "us-east-2": { "ImageID": "ami-063bad96bd053da6e"       },
+	  "us-west-1": {     "ImageID": "ami-0a9b9407fc6bb2a73"   },
+	  "us-west-2": {    "ImageID": "ami-07a03990a907dea03"    }
+    }
+  },
+
+
+
+
+
+  "Resources" : {
+    "EC2Instance" : {
+      "Type" : "AWS::EC2::Instance",
+      "Properties" : {
+        "InstanceType" : { "Ref" : "InstanceType" },
+		"NetworkInterfaces": [ { 
+			"DeviceIndex": "0", 
+			"AssociatePublicIpAddress": true, 
+			"SubnetId": { "Ref": "SubnetId" }, 
+			"GroupSet": [{ "Fn::GetAtt" : ["BWAFsecRuleGroup", "GroupId"] }]
+			} ],
+        "ImageId" : { "Fn::FindInMap" : [ "RegionMap", { "Ref" : "AWS::Region" }, "ImageID" ] }
+      }
+    },
+
+
+
+   "BWAFsecRuleGroup": {
+      "Type": "AWS::EC2::SecurityGroup",
+      "Properties": {
+        "GroupDescription": "Security rule group for the Barracuda WAF",
+        "VpcId": {
+          "Ref": "VPCId"
+        }
+      }
+    },
+    "BWAFsecRule1": {
+      "Type": "AWS::EC2::SecurityGroupIngress",
+      "Properties": {
+        "GroupId": {
+          "Ref": "BWAFsecRuleGroup"
+        },
+        "IpProtocol": "tcp",
+        "FromPort": "8000",
+        "ToPort": "8000",
+        "CidrIp": "0.0.0.0/0"
+      }
+    },
+    "BWAFsecRule2": {
+      "Type": "AWS::EC2::SecurityGroupIngress",
+      "Properties": {
+        "GroupId": {
+          "Ref": "BWAFsecRuleGroup"
+        },
+        "IpProtocol": "tcp",
+        "FromPort": "8443",
+        "ToPort": "8443",
+        "CidrIp": "0.0.0.0/0"
+      }
+    },
+    "BWAFsecRule3": {
+      "Type": "AWS::EC2::SecurityGroupIngress",
+      "Properties": {
+        "GroupId": {
+          "Ref": "BWAFsecRuleGroup"
+        },
+        "IpProtocol": "tcp",
+        "FromPort": "80",
+        "ToPort": "80",
+        "CidrIp": "0.0.0.0/0"
+      }
+    },
+    "BWAFsecRule4": {
+      "Type": "AWS::EC2::SecurityGroupIngress",
+      "Properties": {
+        "GroupId": {
+          "Ref": "BWAFsecRuleGroup"
+        },
+        "IpProtocol": "tcp",
+        "FromPort": "443",
+        "ToPort": "443",
+        "CidrIp": "0.0.0.0/0"
+      }
+    },
+    "BWAFsecRule5": {
+      "Type": "AWS::EC2::SecurityGroupIngress",
+      "Properties": {
+        "GroupId": {
+          "Ref": "BWAFsecRuleGroup"
+        },
+        "IpProtocol": "tcp",
+        "FromPort": "8080",
+        "ToPort": "8080",
+        "CidrIp": "0.0.0.0/0"
+      }
+    }
+ },
+
+
+
+
+
+
+  "Outputs" : {
+    "PublicDNSName" : {
+      "Description" : "Public DNS name of the new EC2 instance",
+      "Value" : { "Fn::GetAtt" : [ "EC2Instance", "PublicDnsName" ] }
+    },
+    "PublicIPAddress" : {
+      "Description" : "Public IP address of the new EC2 instance",
+      "Value" : { "Fn::GetAtt" : [ "EC2Instance", "PublicIp" ] }
+    }
+  }
+}
