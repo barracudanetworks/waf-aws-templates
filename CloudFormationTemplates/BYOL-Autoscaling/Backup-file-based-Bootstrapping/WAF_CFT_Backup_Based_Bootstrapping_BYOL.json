@@ -806,7 +806,7 @@
       },
       "eu-north-1": {
 	      "ImageID": "ami-0ad707859b70bf935"
-      }
+      },
       "eu-west-1": {
         "ImageID": "ami-022697067ec037c34"
       },
