@@ -903,7 +903,7 @@
               "",
               [
                 "#!/bin/bash\n",
-                "/opt/aws/bwaf/aws_autoscale.pl --command init-config --enableRestoreBackup --saveSystemDataOnTermination --dumpEC2Details --maskAdminPassword",
+                "/opt/aws/bwaf/aws_autoscale.pl --command init-config --enableRestoreBackup --saveSystemDataOnTermination --dumpEC2Details",
                 " --stack ",
                 {
                   "Ref": "AWS::StackName"

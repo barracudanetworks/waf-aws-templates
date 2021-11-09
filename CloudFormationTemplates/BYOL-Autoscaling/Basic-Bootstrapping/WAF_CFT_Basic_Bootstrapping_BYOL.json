@@ -156,9 +156,7 @@
      "AvailabilityZones": {
        "Type": "List<AWS::EC2::AvailabilityZone::Name>",
 
-       "Description": "Select the Availability Zones of the VPC that 
-will be used for this deployment. Recommended deployment is across 
-multiple AZ's"
+       "Description": "Select the Availability Zones of the VPC that will be used for this deployment. Recommended deployment is across multiple AZ's"
      },
      "VPCid": {
        "Description": "Select the VPC chosen for this deployment",
@@ -168,26 +166,19 @@ multiple AZ's"
        "ConstraintDescription": "Enter valid Subnet Id's associated to the VPC (subnet-*)",
        "Type": "List<AWS::EC2::Subnet::Id>",
 
-       "Description": "Select subnet id's which has been already 
-assigned to the VPC used. These subnets must reside on AZ's chosen"
+       "Description": "Select subnet id's which has been already assigned to the VPC used. These subnets must reside on AZ's chosen"
      },
      "ELBNames": {
        "ConstraintDescription": "Enter a comma separated list of pre-configured Elastic Load Balancer Names",
        "Type": "CommaDelimitedList",
 
-       "Description": "Enter a valid pre-configured Elastic Load 
-Balancer name associated to the VPC and Subnet. This is the ELB that 
-will distrubite traffic to the WAF Cluster"
+       "Description": "Enter a valid pre-configured Elastic Load Balancer name associated to the VPC and Subnet. This is the ELB that will distrubite traffic to the WAF Cluster"
      },
       "CudaLicenseSubDir": {
        "Type": "String",
        "AllowedPattern": "[^\\s]*",
 
-       "Description": "Specify the folder on the specified License S3 
-Bucket which contains the BYOL License File. Leave blank if there is no 
-specific folder for Licenses on the S3 Bucket. Examples: 
-Barracuda/Licenses(Two level folder structure), 
-BarracudaBYOLLicenses(One level folder structure)."
+       "Description": "Specify the folder on the specified License S3 Bucket which contains the BYOL License File. Leave blank if there is no specific folder for Licenses on the S3 Bucket. Examples: Barracuda/Licenses(Two level folder structure), BarracudaBYOLLicenses(One level folder structure)."
      },
      "AdministratorName": {
                "ConstraintDescription": "Must be a valid name with 2 - 64 characters.",
@@ -209,9 +200,7 @@ BarracudaBYOLLicenses(One level folder structure)."
        "MinLength": "2",
        "MaxLength": "64",
 
-       "Description": "By entering the Name, Email Address and Company 
-(if applicable) above you agree to terms and conditions outlined in the 
-product End User License Agreement (https://www.barracuda.com/legal/software_license_agreement) and Privacy Policy (https://www.barracuda.com/legal/privacy)."
+       "Description": "By entering the Name, Email Address and Company (if applicable) above you agree to terms and conditions outlined in the product End User License Agreement (https://www.barracuda.com/legal/software_license_agreement) and Privacy Policy (https://www.barracuda.com/legal/privacy)."
      },
      "LicenseS3Bucket": {
        "Type": "String",
@@ -220,9 +209,7 @@ product End User License Agreement (https://www.barracuda.com/legal/software_lic
      "ClusterS3Bucket": {
        "Type": "String",
 
-       "Description": "Enter the existing S3 Bucket Name to be used for 
-WAF Cluster bootstrapping. This bucket would also be used to dump the 
-system report during the instance termination"
+       "Description": "Enter the existing S3 Bucket Name to be used for WAF Cluster bootstrapping. This bucket would also be used to dump the system report during the instance termination"
      },
      "WAFServiceName": {
        "Description": "Specify the Service Name to be configured on the Barracuda Web Application Firewall",
@@ -233,9 +220,7 @@ system report during the instance termination"
      },
      "WAFServicePort": {
 
-       "Description": "Specify the Service Port to be configured on the 
-Barracuda Web Application Firewall. This the port that is exposed to the
- outside world. Default is 80.",
+       "Description": "Specify the Service Port to be configured on the Barracuda Web Application Firewall. This the port that is exposed to theoutside world. Default is 80.",
        "Default": "80",
        "ConstraintDescription": "Must be a valid port number (1-65535).",
        "Type": "Number",
@@ -244,10 +229,7 @@ Barracuda Web Application Firewall. This the port that is exposed to the
      },
      "WAFServerIP": {
 
-       "Description": "Specify the Server IP (inside the VPC) to be 
-configured on the Barracuda Web Application Firewall; alternatively, you
- can also enter the FQDN of the instance or a downstream ELB to connect 
-to.",
+       "Description": "Specify the Server IP (inside the VPC) to be configured on the Barracuda Web Application Firewall; alternatively, youcan also enter the FQDN of the instance or a downstream ELB to connect to.",
        "ConstraintDescription": "Must be a valid IP address or FQDN",
        "MinLength": "7",
        "MaxLength": "65535",
@@ -255,9 +237,7 @@ to.",
      },
      "WAFServerPort": {
 
-       "Description": "Specify the port number on which the web 
-application responds. This is the port that the Barracuda Web 
-Application Firewall will use to connect to the application",
+       "Description": "Specify the port number on which the web application responds. This is the port that the Barracuda Web Application Firewall will use to connect to the application",
        "ConstraintDescription": "Must be a valid port number (1-65535).",
        "Type": "Number",
        "MaxValue": "65535",
@@ -273,14 +253,12 @@ Application Firewall will use to connect to the application",
      },
      "ProxyServerUsername": {
 
-       "Description": "Enter the Username for your Proxy Server. Leave 
-it empty in case you dont have any username for your Proxy Server.",
+       "Description": "Enter the Username for your Proxy Server. Leave it empty in case you dont have any username for your Proxy Server.",
        "Type": "String"
      },
      "ProxyServerPassword": {
 
-       "Description": "Enter the Password for your Proxy Server. Leave 
-it empty in case you dont have any password for your Proxy Server.",
+       "Description": "Enter the Password for your Proxy Server. Leave it empty in case you dont have any password for your Proxy Server.",
        "Type": "String"
      },
      "DefaultDomain": {
@@ -297,9 +275,7 @@ it empty in case you dont have any password for your Proxy Server.",
      "InstanceType": {
        "Default": "m3.medium",
 
-       "ConstraintDescription": "Choose from the following EC2 instance 
-types: m3.medium, m3.large, m3.xlarge, m3.2xlarge, m4.large, m4.xlarge, 
-m4.2xlarge",
+       "ConstraintDescription": "Choose from the following EC2 instance types: m3.medium, m3.large, m3.xlarge, m3.2xlarge, m4.large, m4.xlarge, m4.2xlarge",
        "Type": "String",
        "Description": "Choose the instance type to use for this AutoScale group",
        "AllowedValues": [
