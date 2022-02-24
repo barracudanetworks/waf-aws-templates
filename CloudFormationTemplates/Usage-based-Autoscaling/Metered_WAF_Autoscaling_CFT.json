@@ -140,21 +140,20 @@
       "Type": "CommaDelimitedList",
       "Description": "Enter a valid pre-configured Elastic Load Balancer name associated to the VPC and Subnet. This is the ELB that will distrubite traffic to the WAF Cluster"
     },
-    "InstanceType": {
-      "Default": "m3.medium",
-      "ConstraintDescription": "Choose from the following EC2 instance types: m3.medium, m3.large, m3.xlarge, m3.2xlarge, m4.large, m4.xlarge, m4.2xlarge",
-      "Type": "String",
-      "Description": "Choose the instance type to use for this AutoScale group",
-      "AllowedValues": [
-        "m3.medium",
-        "m3.large",
-        "m3.xlarge",
-        "m3.2xlarge",
-            "m4.large",
-            "m4.xlarge",
-            "m4.2xlarge"
+    "InstanceType":{
+      "Default":"m4.large",
+      "ConstraintDescription":"Choose from the following EC2 instance types: m4.large, m4.xlarge,m4.2xlarge, m5.large, m5.xlarge, m5.2xlarge",
+      "Type":"String",
+      "Description":"Choose the instance type to use for this AutoScale group",
+      "AllowedValues":[
+         "m4.large",
+         "m4.xlarge",
+         "m4.2xlarge",
+         "m5.large",
+         "m5.xlarge",
+         "m5.2xlarge"
       ]
-    },
+   },
     "ScalingMinSize": {
       "Description": "Enter the minimum number of WAF instances (1-20) to be available in the AutoScale Group",
       "Default": "1",
@@ -244,45 +243,42 @@
   },
   "Mappings": {
     "RegionMap": {
-      "us-east-1": {
-        "ImageID": "ami-03e4c778"
-      },
-      "us-west-1": {
-        "ImageID": "ami-ef7f548f"
-      },
-      "us-west-2": {
-        "ImageID": "ami-f8c32580"
-      },
-      "sa-east-1": {
-        "ImageID": "ami-6e562002"
-      },
-      "ca-central-1": {
-        "ImageID": "ami-4de65829"
-      },
-      "eu-central-1": {
-        "ImageID": "ami-7117b81e"
-      },
-      "eu-west-1": {
-        "ImageID": "ami-45eb1c3c"
-      },
-      "eu-west-2": {
-        "ImageID": "ami-ded6c7ba"
-      },
-      "ap-southeast-1": {
-        "ImageID": "ami-e247d981"
-      },
-      "ap-southeast-2": {
-        "ImageID": "ami-a37e67c0"
-      },
-      "ap-northeast-1": {
-        "ImageID": "ami-321ef754"
-      },
-      "ap-northeast-2": {
-        "ImageID": "ami-f10ad39f"
-      },
-      "ap-south-1": {
-        "ImageID": "ami-818ef5ee"
-      }
+      "us-east-1":{
+        "ImageID":"ami-0e7c59504a31fc617"
+     },
+     "us-east-2":{
+        "ImageID":"ami-015ed6bc7e7d633a9"
+     },
+     "us-west-1":{
+        "ImageID":"ami-00fb8297168aa8021"
+     },
+     "us-west-2":{
+        "ImageID":"ami-01623652afe02178b"
+     },
+     "ap-southeast-1":{
+        "ImageID":"ami-0f2ac992d99edabac"
+     },
+     "ap-southeast-2":{
+        "ImageID":"ami-0d0bf5ec391ddcc0d"
+     },
+     "ap-northeast-1":{
+        "ImageID":"ami-0cfd920045a108fef"
+     },
+     "ca-central-1":{
+        "ImageID":"ami-0fa7264a442fefe8c"
+     },
+     "eu-central-1":{
+        "ImageID":"ami-023ba9c069b116b2b"
+     },
+     "eu-west-1":{
+        "ImageID":"ami-006b4e953f1972528"
+     },
+     "eu-west-2":{
+        "ImageID":"ami-0aab67dfb957cf853"
+     },
+     "sa-east-1":{
+        "ImageID":"ami-06a48a3a4391a2e04"
+     }
     },
     "BandwidthScaleUp": {
       "medium": {
