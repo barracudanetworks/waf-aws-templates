@@ -265,18 +265,17 @@
       "Description": "Enter the IAM Role which has appropriate permissions on the all the specified S3 bucket(s)"
     },
     "InstanceType": {
-      "Default": "m3.medium",
-      "ConstraintDescription": "Choose from the following EC2 instance types: m3.medium, m3.large, m3.xlarge, m3.2xlarge, m4.large, m4.xlarge, m4.2xlarge",
+      "Default": "m4.large",
+      "ConstraintDescription": "Choose from the following EC2 instance types: m4.large, m4.xlarge,m4.2xlarge, m5.large, m5.xlarge, m5.2xlarge",
       "Type": "String",
       "Description": "Choose the instance type to use for this AutoScale group",
       "AllowedValues": [
-        "m3.medium",
-        "m3.large",
-        "m3.xlarge",
-        "m3.2xlarge",
-    "m4.large",
-    "m4.xlarge",
-    "m4.2xlarge"
+        "m4.large",
+        "m4.xlarge",
+		"m4.2xlarge",
+        "m5.large",
+        "m5.xlarge",
+        "m5.2xlarge"
       ]
     },
     "TimeZone": {
@@ -786,54 +785,42 @@
   },
   "Mappings": {
     "RegionMap": {
-      "eu-north-1": {
-        "ImageID": "ami-03d3791ef0857542f"
-      },
-      "ap-south-1": {
-        "ImageID": "ami-003907425a7610e42"
-      },
-      "eu-west-3": {
-        "ImageID": "ami-08a3f6385cb573181"
-      },
-      "eu-west-2": {
-        "ImageID": "ami-0e869a1708e3324fe"
-      },
-      "eu-west-1": {
-        "ImageID": "ami-05017e17fae346d10"
-      },
-      "ap-northeast-2": {
-        "ImageID": "ami-070eac5c27aa44a3e"
-      },
-      "ap-northeast-1": {
-        "ImageID": "ami-0e54f22cf34c0706e"
-      },
-      "sa-east-1": {
-        "ImageID": "ami-063d46260260f70ce"
-      },
-      "ca-central-1": {
-        "ImageID": "ami-0c187656abe524d19"
-      },
-      "ap-southeast-1": {
-        "ImageID": "ami-0cb8c17f9e7d329aa"
-      },
-      "ap-southeast-2": {
-        "ImageID": "ami-0c39900e2aeb2426d"
-      },
-      "eu-central-1": {
-        "ImageID": "ami-026beb3ac8fd2cf20"
-      },
-      "us-east-1": {
-        "ImageID": "ami-09fcf781b3d3cbb11"
-      },
-      "us-east-2": {
-        "ImageID": "ami-034ff6144032c7c78"
-      },
-      "us-west-1": {
-        "ImageID": "ami-0d0776944ea5e1633"
-      },
-      "us-west-2": {
-        "ImageID": "ami-082f7db89cfaca4ef"
-      }
+		 "us-east-1":{
+            "BYOL":"ami-09fcf781b3d3cbb11"
+         },
+         "us-east-2":{
+            "BYOL":"ami-034ff6144032c7c78"
+         },
+         "us-west-1":{
+            "BYOL":"ami-0d0776944ea5e1633"
+         },
+         "us-west-2":{
+            "BYOL":"ami-082f7db89cfaca4ef"
+         },
+         "ap-southeast-1":{
+            "BYOL":"ami-0cb8c17f9e7d329aa"
+         },
+         "ap-southeast-2":{
+            "BYOL":"ami-0c39900e2aeb2426d"
+         },
+         "ap-northeast-1":{
+            "BYOL":"ami-0e54f22cf34c0706e"
+         },
+         "ca-central-1":{
+            "BYOL":"ami-0c187656abe524d19"
+         },
+         "eu-central-1":{
+            "BYOL":"ami-026beb3ac8fd2cf20"
+         },
+         "eu-west-1":{
+            "BYOL":"ami-05017e17fae346d10"
+         },
+         "eu-west-2":{
+            "BYOL":"ami-0e869a1708e3324fe"
+         },
+         "sa-east-1":{
+            "BYOL":"ami-063d46260260f70ce"
+         }
     },
     "BandwidthScaleUp": {
       "medium": {
